@@ -1,0 +1,48 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator pothos {
+  provider = "prisma-pothos-types"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String           @id @default(uuid())
+  name            String
+  createdAt       DateTime         @default(now())
+  messages        Message[]
+  cathodeRayTubes CathodeRayTube[]
+}
+
+model CathodeRayTube {
+  id             String   @id @default(uuid())
+  brand          String?
+  modelNumber    String?
+  svideo         Int?
+  composite      Int?
+  component      Int?
+  curved         Boolean?
+  widescreen     Boolean?
+  coaxial        Int?
+  ntsc           Boolean?
+  pal            Boolean?
+  highDefinition Boolean?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  users          User[]
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  body      String
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}

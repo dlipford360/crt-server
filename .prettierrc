@@ -1,0 +1,15 @@
+{
+    "files.insertFinalNewline": true,
+    "editor.formatOnSave": true,
+    "semi": false,
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+  }
+  
