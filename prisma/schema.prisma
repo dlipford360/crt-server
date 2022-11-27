@@ -40,27 +40,29 @@ model Television {
   digitalconverter Boolean?
   hdmi             Int?
   scart            Int?
-  kilohertz        kilohertz?
   stereoAudio      Boolean?
-  yearMade         Int?
+  yearMade         String?
   dvi              Int?
   vga              Int?
   ntsc             Boolean?
-  maskType         maskType?
-  type             televisionType       @default(crt)
   pal              Boolean?
   highDefinition   Boolean?
-  published        Boolean?
+  vcrPlayback      Boolean?
+  dvdPlayback      Boolean?
   description      String?
+  published        Boolean?
+  kilohertz        kilohertz?
+  maskType         maskType?
+  type             televisionType       @default(crt)
   addedByUser      User?                @relation(name: "ADDED_BY_USER", fields: [addedByUserId], references: [id])
   addedByUserId    String?
   createdAt        DateTime             @default(now())
   updatedAt        DateTime             @updatedAt
   users            User[]               @relation("MY_TELEVISIONS")
-  pictures         televisionPictures[]
+  pictures         TelevisionPicture[]
 }
 
-model televisionPictures {
+model TelevisionPicture {
   id           String     @id @default(uuid())
   url          String
   television   Television @relation(fields: [televisionId], references: [id])
@@ -88,6 +90,7 @@ enum televisionType {
   crt
   plasma
 }
+
 enum kilohertz {
   fifteen
   twentyfive

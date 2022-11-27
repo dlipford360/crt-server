@@ -72,11 +72,13 @@ async function main() {
       brand: "JVC",
       modelNumber: `32" dseries`,
       coaxial: 1,
-      component: 2,
+
+      component: 1,
       svideo: 1,
       composite: 2,
-      dvi: 1,
-      highDefinition: true,
+      dvi: 0,
+      hdmi: 0,
+      highDefinition: false,
       widescreen: true,
     },
   })

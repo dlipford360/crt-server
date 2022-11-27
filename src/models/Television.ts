@@ -11,18 +11,23 @@ builder.prismaObject("Television", {
     component: t.exposeInt("component", { nullable: true }),
     curved: t.exposeBoolean("curved", { nullable: true }),
     widescreen: t.exposeBoolean("widescreen", { nullable: true }),
+    diagonalInches: t.exposeInt("diagonalInches", { nullable: true }),
     coaxial: t.exposeInt("coaxial", { nullable: true }),
+    tvl: t.exposeInt("tvl", { nullable: true }),
+    digitalconverter: t.exposeBoolean("ntsc", { nullable: true }),
+    hdmi: t.exposeInt("hdmi", { nullable: true }),
+    scart: t.exposeInt("scart", { nullable: true }),
+    stereoAudio: t.exposeBoolean("stereoAudio", { nullable: true }),
+    yearMade: t.exposeString("yearMade", { nullable: true }),
+    dvi: t.exposeInt("dvi", { nullable: true }),
+    vga: t.exposeInt("vga", { nullable: true }),
     ntsc: t.exposeBoolean("ntsc", { nullable: true }),
     pal: t.exposeBoolean("pal", { nullable: true }),
     highDefinition: t.exposeBoolean("highDefinition", { nullable: true }),
-    users: t.relation("users"),
-
-    updatedAt: t.expose("updatedAt", {
-      type: "Date",
-    }),
-    createdAt: t.expose("createdAt", {
-      type: "Date",
-    }),
+    vcrPlayback: t.exposeBoolean("vcrPlayback", { nullable: true }),
+    dvdPlayback: t.exposeBoolean("dvdPlayback", { nullable: true }),
+    description: t.exposeString("description", { nullable: true }),
+    televisionPictures: t.relation("pictures"),
   }),
 })
 
