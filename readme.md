@@ -4,5 +4,5 @@ notes:
 
 - after adding things to schema.prisma. run `npx prisma generate`
 - seed `npx prisma db seed`
-- migrate ` npx prisma migrate dev --name cathodeRayTube`
+- migrate ` npx prisma migrate dev --name televisionnow`
 - run `npm run dev`

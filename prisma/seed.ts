@@ -7,6 +7,7 @@ async function main() {
   // Delete all `User` and `Message` records
   await prisma.message.deleteMany({})
   await prisma.user.deleteMany({})
+  await prisma.television.deleteMany({})
   // (Re-)Create dummy `User` and `Message` records
   await prisma.user.create({
     data: {
@@ -53,9 +54,30 @@ async function main() {
       },
     },
   })
-  await prisma.cathodeRayTube.create({
+  await prisma.television.create({
     data: {
       brand: "Sony",
+      modelNumber: "kv-34xbr910",
+      coaxial: 1,
+      component: 2,
+      svideo: 1,
+      composite: 2,
+      dvi: 1,
+      highDefinition: true,
+      widescreen: true,
+    },
+  })
+  await prisma.television.create({
+    data: {
+      brand: "JVC",
+      modelNumber: `32" dseries`,
+      coaxial: 1,
+      component: 2,
+      svideo: 1,
+      composite: 2,
+      dvi: 1,
+      highDefinition: true,
+      widescreen: true,
     },
   })
 }

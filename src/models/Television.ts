@@ -1,7 +1,7 @@
 import { builder } from "../builder"
 import { prisma } from "../db"
 
-builder.prismaObject("CathodeRayTube", {
+builder.prismaObject("Television", {
   fields: (t) => ({
     id: t.exposeID("id"),
     brand: t.exposeString("brand", { nullable: true }),
@@ -27,14 +27,14 @@ builder.prismaObject("CathodeRayTube", {
 })
 
 //creates graphql query endpoint
-builder.queryField("cathoderaytubes", (t) =>
+builder.queryField("televisions", (t) =>
   t.prismaField({
-    type: ["CathodeRayTube"],
+    type: ["Television"],
     args: {
       composite: t.arg.int({ required: false }),
     },
     resolve: async (query, root, args, ctx, info) => {
-      return prisma.cathodeRayTube.findMany({ where: {} })
+      return prisma.television.findMany({ where: {} })
     },
   })
 )

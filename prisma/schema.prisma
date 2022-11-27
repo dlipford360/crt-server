@@ -14,35 +14,76 @@ datasource db {
 }
 
 model User {
-  id              String           @id @default(uuid())
-  name            String
-  createdAt       DateTime         @default(now())
-  messages        Message[]
-  cathodeRayTubes CathodeRayTube[]
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  messages         Message[]
+  myTelevisions    Television[] @relation("MY_TELEVISIONS")
+  addedTelevisions Television[] @relation("ADDED_BY_USER")
 }
 
-model CathodeRayTube {
-  id             String   @id @default(uuid())
-  brand          String?
-  modelNumber    String?
-  svideo         Int?
-  composite      Int?
-  component      Int?
-  curved         Boolean?
-  widescreen     Boolean?
-  coaxial        Int?
-  ntsc           Boolean?
-  pal            Boolean?
-  highDefinition Boolean?
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  users          User[]
+model Television {
+  id               String               @id @default(uuid())
+  brand            String?
+  modelNumber      String?
+  family           String?
+  svideo           Int?
+  composite        Int?
+  component        Int?
+  curved           Boolean?
+  widescreen       Boolean?
+  diagonalInches   Int?
+  coaxial          Int?
+  tvl              Int?
+  digitalconverter Boolean?
+  hdmi             Int?
+  scart            Int?
+  stereoAudio      Boolean?
+  yearMade         Int?
+  dvi              Int?
+  vga              Int?
+  ntsc             Boolean?
+  maskType         maskType?
+  type             televisionType       @default(crt)
+  pal              Boolean?
+  highDefinition   Boolean?
+  published        Boolean?
+  description      String?
+  addedByUser      User?                @relation(name: "ADDED_BY_USER", fields: [addedByUserId], references: [id])
+  addedByUserId    String?
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+  users            User[]               @relation("MY_TELEVISIONS")
+  pictures         televisionPictures[]
+}
+
+model televisionPictures {
+  id           String     @id @default(uuid())
+  url          String
+  television   Television @relation(fields: [televisionId], references: [id])
+  televisionId String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 }
 
 model Message {
   id        String   @id @default(uuid())
   body      String
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   userId    String
   user      User     @relation(fields: [userId], references: [id])
+}
+
+enum maskType {
+  aperture
+  mask
+  dot
+}
+
+enum televisionType {
+  crt
+  plasma
 }
