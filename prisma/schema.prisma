@@ -40,6 +40,7 @@ model Television {
   digitalconverter Boolean?
   hdmi             Int?
   scart            Int?
+  kilohertz        kilohertz?
   stereoAudio      Boolean?
   yearMade         Int?
   dvi              Int?
@@ -86,4 +87,9 @@ enum maskType {
 enum televisionType {
   crt
   plasma
+}
+enum kilohertz {
+  fifteen
+  twentyfive
+  thirtyone
 }
