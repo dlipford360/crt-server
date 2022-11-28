@@ -12,6 +12,8 @@ async function main() {
   await prisma.user.create({
     data: {
       name: "Jack",
+      email: "jack@yod.com",
+      password: "PASSWORD",
       messages: {
         create: [
           {
@@ -27,6 +29,8 @@ async function main() {
   await prisma.user.create({
     data: {
       name: "Ryan",
+      email: "ryan@yodaniel.com",
+      password: "PASSWORD",
       messages: {
         create: [
           {
@@ -42,6 +46,8 @@ async function main() {
   await prisma.user.create({
     data: {
       name: "Adam",
+      email: "adam@yodaniel.com",
+      password: "PASSWORD",
       messages: {
         create: [
           {

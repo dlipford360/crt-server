@@ -14,18 +14,21 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  name      String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
+  id            String    @id @default(uuid())
+  email         String    @unique
+  name          String?
+  password      String
+  session_token String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  deletedAt     DateTime?
   messages         Message[]
   myTelevisions    Television[] @relation("MY_TELEVISIONS")
   addedTelevisions Television[] @relation("ADDED_BY_USER")
 }
 
 model Television {
-  id               String               @id @default(uuid())
+  id               String              @id @default(uuid())
   brand            String?
   modelNumber      String?
   family           String?
@@ -53,12 +56,12 @@ model Television {
   published        Boolean?
   kilohertz        kilohertz?
   maskType         maskType?
-  type             televisionType       @default(crt)
-  addedByUser      User?                @relation(name: "ADDED_BY_USER", fields: [addedByUserId], references: [id])
+  type             televisionType      @default(crt)
+  addedByUser      User?               @relation(name: "ADDED_BY_USER", fields: [addedByUserId], references: [id])
   addedByUserId    String?
-  createdAt        DateTime             @default(now())
-  updatedAt        DateTime             @updatedAt
-  users            User[]               @relation("MY_TELEVISIONS")
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+  users            User[]              @relation("MY_TELEVISIONS")
   pictures         TelevisionPicture[]
 }
 
