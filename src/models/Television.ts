@@ -43,3 +43,17 @@ builder.queryField("televisions", (t) =>
     },
   })
 )
+builder.mutationField("addTelevision", (t) =>
+  t.prismaField({
+    type: "Television",
+    args: {
+      brand: t.arg.string({ required: false }),
+      modelNumber: t.arg.string({ required: false }),
+    },
+    resolve: async (query, root, { brand, modelNumber }, ctx, info) => {
+      return await prisma.television.create({
+        data: { brand: brand, modelNumber: modelNumber },
+      })
+    },
+  })
+)
